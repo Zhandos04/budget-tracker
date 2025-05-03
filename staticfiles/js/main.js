@@ -1,6 +1,6 @@
-// Функция для отображения/скрытия навигационного меню на мобильных устройствах
+// Function to show/hide navigation menu on mobile devices
 document.addEventListener('DOMContentLoaded', function() {
-    // Обработка закрытия сообщений об ошибках
+    // Handle closing alert messages
     const alerts = document.querySelectorAll('.alert');
     alerts.forEach(function(alert) {
         setTimeout(function() {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     });
 
-    // Подсветка активного пункта меню
+    // Highlight active menu item
     const currentLocation = location.pathname;
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     navLinks.forEach(link => {
@@ -18,18 +18,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Инициализация всплывающих подсказок
+    // Initialize tooltips
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 });
 
-// Функция для форматирования чисел в денежном формате
+// Function to format numbers in currency format
 function formatCurrency(amount, currency = '₸') {
-    return new Intl.NumberFormat('ru-RU', {
+    return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'RUB',
+        currency: 'KZT',
         minimumFractionDigits: 2
     }).format(amount);
 }

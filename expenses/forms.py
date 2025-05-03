@@ -7,15 +7,15 @@ class TransactionForm(forms.ModelForm):
         fields = ['amount', 'description', 'date', 'category', 'transaction_type']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
-            'description': forms.TextInput(attrs={'placeholder': 'Введите описание'}),
-            'amount': forms.NumberInput(attrs={'placeholder': 'Введите сумму'}),
+            'description': forms.TextInput(attrs={'placeholder': 'Enter description'}),
+            'amount': forms.NumberInput(attrs={'placeholder': 'Enter amount'}),
         }
         labels = {
-            'amount': 'Сумма',
-            'description': 'Описание',
-            'date': 'Дата',
-            'category': 'Категория',
-            'transaction_type': 'Тип транзакции',
+            'amount': 'Amount',
+            'description': 'Description',
+            'date': 'Date',
+            'category': 'Category',
+            'transaction_type': 'Transaction Type',
         }
 
 class CategoryForm(forms.ModelForm):
@@ -23,8 +23,8 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = ['name']
         widgets = {
-            'name': forms.TextInput(attrs={'placeholder': 'Введите название категории'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Enter category name'}),
         }
         labels = {
-            'name': 'Название категории',
+            'name': 'Category Name',
         }

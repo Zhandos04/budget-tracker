@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,38 +23,38 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'dashboard' %}">
-                                <i class="fas fa-tachometer-alt me-1"></i>Панель управления
+                                <i class="fas fa-tachometer-alt me-1"></i>Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'add_transaction' %}">
-                                <i class="fas fa-plus me-1"></i>Добавить транзакцию
+                                <i class="fas fa-plus me-1"></i>Add Transaction
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'reports' %}">
-                                <i class="fas fa-chart-bar me-1"></i>Отчеты
+                                <i class="fas fa-chart-bar me-1"></i>Reports
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}">
-                                <i class="fas fa-user me-1"></i>Профиль
+                                <i class="fas fa-user me-1"></i>Profile
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">
-                                <i class="fas fa-sign-out-alt me-1"></i>Выйти
+                                <i class="fas fa-sign-out-alt me-1"></i>Logout
                             </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">
-                                <i class="fas fa-sign-in-alt me-1"></i>Войти
+                                <i class="fas fa-sign-in-alt me-1"></i>Login
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}">
-                                <i class="fas fa-user-plus me-1"></i>Регистрация
+                                <i class="fas fa-user-plus me-1"></i>Register
                             </a>
                         </li>
                     {% endif %}
@@ -78,7 +78,7 @@
 
     <footer class="bg-light py-4 mt-5">
         <div class="container text-center">
-            <p class="mb-0">&copy; 2025 Budget Tracker. Все права защищены.</p>
+            <p class="mb-0">&copy; 2025 Budget Tracker. All rights reserved.</p>
         </div>
     </footer>
 

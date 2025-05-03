@@ -13,14 +13,14 @@ def dashboard(request):
     current_month = datetime.datetime.now().month
     current_year = datetime.datetime.now().year
     
-    # Получение транзакций текущего месяца
+    # Get current month transactions
     transactions = Transaction.objects.filter(
         user=request.user,
         date__month=current_month,
         date__year=current_year
     ).order_by('-date')
     
-    # Общие суммы
+    # Total amounts
     income = Transaction.objects.filter(
         user=request.user, 
         transaction_type='income',
@@ -37,11 +37,11 @@ def dashboard(request):
     
     balance = income - expenses
     
-    # Данные для графиков
+    # Chart data
     expense_categories = Category.objects.filter(user=request.user)
     category_data = []
     
-    # Получаем суммы расходов по категориям
+    # Get expense amounts by category
     for category in expense_categories:
         category_sum = Transaction.objects.filter(
             user=request.user,
@@ -54,10 +54,10 @@ def dashboard(request):
         if category_sum > 0:
             category_data.append({
                 'name': category.name,
-                'amount': float(category_sum)  # Преобразуем в float для JSON
+                'amount': float(category_sum)  # Convert to float for JSON
             })
     
-    # Печатаем для отладки
+    # Debug print
     print(f"Category data: {category_data}")
     
     context = {
@@ -79,7 +79,7 @@ def add_transaction(request):
             transaction = form.save(commit=False)
             transaction.user = request.user
             transaction.save()
-            messages.success(request, 'Транзакция успешно добавлена!')
+            messages.success(request, 'Transaction added successfully!')
             return redirect('dashboard')
     else:
         form = TransactionForm()
@@ -95,7 +95,7 @@ def add_category(request):
             category = form.save(commit=False)
             category.user = request.user
             category.save()
-            messages.success(request, 'Категория успешно добавлена!')
+            messages.success(request, 'Category added successfully!')
             return redirect('dashboard')
     else:
         form = CategoryForm()
@@ -104,11 +104,11 @@ def add_category(request):
 
 @login_required
 def reports(request):
-    # Данные за последние 6 месяцев
+    # Data for the last 6 months
     end_date = datetime.datetime.now()
     start_date = end_date - datetime.timedelta(days=180)
     
-    # Собираем данные по месяцам
+    # Gather data by month
     monthly_data = Transaction.objects.filter(
         user=request.user,
         date__range=[start_date, end_date]
@@ -118,7 +118,7 @@ def reports(request):
         total=Sum('amount')
     ).order_by('month')
     
-    # Преобразуем в формат для графиков
+    # Format for charts
     months = []
     incomes = []
     expenses = []
@@ -140,11 +140,11 @@ def reports(request):
         else:
             expenses[month_index] = float(data['total'])
     
-    # Вычисляем сбережения
+    # Calculate savings
     for i in range(len(months)):
         savings[i] = incomes[i] - expenses[i]
     
-    # Передаем months как список JSON
+    # Pass months as JSON list
     context = {
         'months': months,
         'incomes': incomes,
@@ -160,7 +160,7 @@ def delete_transaction(request, transaction_id):
     
     if request.method == 'POST':
         transaction.delete()
-        messages.success(request, f'Транзакция успешно удалена!')
+        messages.success(request, f'Transaction deleted successfully!')
         return redirect('dashboard')
     
     return render(request, 'expenses/delete_transaction.html', {'transaction': transaction})
@@ -173,7 +173,7 @@ def edit_transaction(request, transaction_id):
         form = TransactionForm(request.POST, instance=transaction)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Транзакция успешно обновлена!')
+            messages.success(request, f'Transaction updated successfully!')
             return redirect('dashboard')
     else:
         form = TransactionForm(instance=transaction)

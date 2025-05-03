@@ -3,22 +3,22 @@
 {% block content %}
 <div class="jumbotron bg-light p-5 rounded">
     <div class="container">
-        <h1 class="display-4">Ваш личный помощник по финансам</h1>
-        <p class="lead">Отслеживайте свои доходы и расходы, анализируйте траты и планируйте бюджет с помощью нашего удобного приложения.</p>
+        <h1 class="display-4">Your Personal Finance Assistant</h1>
+        <p class="lead">Track your income and expenses, analyze your spending, and plan your budget with our convenient app.</p>
         
         {% if user.is_authenticated %}
         <div class="mt-4">
             <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
-                <i class="fas fa-chart-line me-2"></i>Перейти в панель управления
+                <i class="fas fa-chart-line me-2"></i>Go to Dashboard
             </a>
         </div>
         {% else %}
         <div class="mt-4">
             <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">
-                <i class="fas fa-user-plus me-2"></i>Зарегистрироваться
+                <i class="fas fa-user-plus me-2"></i>Register
             </a>
             <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">
-                <i class="fas fa-sign-in-alt me-2"></i>Войти
+                <i class="fas fa-sign-in-alt me-2"></i>Login
             </a>
         </div>
         {% endif %}
@@ -31,8 +31,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body text-center">
                     <i class="fas fa-chart-pie fa-3x mb-3 text-primary"></i>
-                    <h3>Визуализация данных</h3>
-                    <p>Наглядные графики помогут вам увидеть, на что уходят ваши деньги, и принимать более взвешенные финансовые решения.</p>
+                    <h3>Data Visualization</h3>
+                    <p>Intuitive charts will help you see where your money goes and make more informed financial decisions.</p>
                 </div>
             </div>
         </div>
@@ -41,8 +41,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body text-center">
                     <i class="fas fa-piggy-bank fa-3x mb-3 text-primary"></i>
-                    <h3>Накопления</h3>
-                    <p>Отслеживайте свои сбережения ежемесячно и анализируйте прогресс на пути к вашим финансовым целям.</p>
+                    <h3>Savings</h3>
+                    <p>Track your savings monthly and analyze your progress towards your financial goals.</p>
                 </div>
             </div>
         </div>
@@ -51,8 +51,8 @@
             <div class="card shadow-sm h-100">
                 <div class="card-body text-center">
                     <i class="fas fa-mobile-alt fa-3x mb-3 text-primary"></i>
-                    <h3>Доступ откуда угодно</h3>
-                    <p>Полностью адаптивный дизайн позволит вам пользоваться приложением на любом устройстве - от смартфона до компьютера.</p>
+                    <h3>Access Anywhere</h3>
+                    <p>Fully responsive design allows you to use the app on any device - from smartphone to computer.</p>
                 </div>
             </div>
         </div>

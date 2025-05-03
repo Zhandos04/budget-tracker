@@ -36,18 +36,18 @@ for user in User.objects.all():
         Profile.objects.create(user=user)
         print(f'Created profile for {user.username}')
 
-# Список категорий расходов
+# Default expense categories
 default_expense_categories = [
-    'Продукты', 'Рестораны и кафе', 'Транспорт', 'Жилье', 'Коммунальные услуги', 
-    'Интернет и связь', 'Развлечения', 'Одежда и обувь', 'Здоровье и медицина', 'Образование', 
-    'Путешествия', 'Подарки', 'Бытовые товары', 'Техника и электроника', 'Спорт', 
-    'Красота и уход', 'Хобби', 'Домашние животные', 'Такси', 'Книги'
+    'Groceries', 'Restaurants & Cafes', 'Transport', 'Housing', 'Utilities', 
+    'Internet & Communications', 'Entertainment', 'Clothing & Footwear', 'Health & Medicine', 'Education', 
+    'Travel', 'Gifts', 'Household Items', 'Electronics', 'Sports', 
+    'Beauty & Self-care', 'Hobbies', 'Pets', 'Taxi', 'Books'
 ]
 
-# Список категорий доходов
+# Default income categories
 default_income_categories = [
-    'Зарплата', 'Фриланс', 'Бизнес', 'Инвестиции', 'Подарки',
-    'Проценты по вкладам', 'Аренда', 'Дивиденды', 'Премии и бонусы', 'Прочие доходы'
+    'Salary', 'Freelance', 'Business', 'Investments', 'Gifts',
+    'Interest', 'Rental Income', 'Dividends', 'Bonuses', 'Other Income'
 ]
 
 # Создаем категории для всех пользователей

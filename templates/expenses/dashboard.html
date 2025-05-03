@@ -5,19 +5,19 @@
     <div class="col-lg-4 mb-4">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
-                <h4 class="card-title mb-0">Обзор за {{ month_name }}</h4>
+                <h4 class="card-title mb-0">Overview for {{ month_name }}</h4>
             </div>
             <div class="card-body">
                 <div class="mb-3">
-                    <h5 class="text-success">Доходы</h5>
+                    <h5 class="text-success">Income</h5>
                     <h3>{{ income }} ₸</h3>
                 </div>
                 <div class="mb-3">
-                    <h5 class="text-danger">Расходы</h5>
+                    <h5 class="text-danger">Expenses</h5>
                     <h3>{{ expenses }} ₸</h3>
                 </div>
                 <div class="pt-2 border-top">
-                    <h5>Баланс</h5>
+                    <h5>Balance</h5>
                     <h3 class="{% if balance >= 0 %}text-success{% else %}text-danger{% endif %}">
                         {{ balance }} ₸
                     </h3>
@@ -27,18 +27,18 @@
 
         <div class="card shadow-sm mt-4">
             <div class="card-header bg-primary text-white">
-                <h4 class="card-title mb-0">Быстрые действия</h4>
+                <h4 class="card-title mb-0">Quick Actions</h4>
             </div>
             <div class="card-body">
                 <div class="d-grid gap-2">
                     <a href="{% url 'add_transaction' %}?type=income" class="btn btn-success">
-                        <i class="fas fa-plus-circle me-2"></i>Добавить доход
+                        <i class="fas fa-plus-circle me-2"></i>Add Income
                     </a>
                     <a href="{% url 'add_transaction' %}?type=expense" class="btn btn-danger">
-                        <i class="fas fa-minus-circle me-2"></i>Добавить расход
+                        <i class="fas fa-minus-circle me-2"></i>Add Expense
                     </a>
                     <a href="{% url 'add_category' %}" class="btn btn-info">
-                        <i class="fas fa-folder-plus me-2"></i>Добавить категорию
+                        <i class="fas fa-folder-plus me-2"></i>Add Category
                     </a>
                 </div>
             </div>
@@ -48,7 +48,7 @@
     <div class="col-lg-8">
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                <h4 class="card-title mb-0">Расходы по категориям</h4>
+                <h4 class="card-title mb-0">Expenses by Category</h4>
             </div>
             <div class="card-body">
                 <canvas id="expenseChart" height="300"></canvas>
@@ -57,17 +57,18 @@
 
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
-                <h4 class="card-title mb-0">Последние транзакции</h4>
+                <h4 class="card-title mb-0">Recent Transactions</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Дата</th>
-                                <th>Категория</th>
-                                <th>Описание</th>
-                                <th>Сумма</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Description</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,10 +80,18 @@
                                 <td class="{% if transaction.transaction_type == 'income' %}text-success{% else %}text-danger{% endif %}">
                                     {% if transaction.transaction_type == 'income' %}+{% else %}-{% endif %}{{ transaction.amount }} ₸
                                 </td>
+                                <td>
+                                    <a href="{% url 'edit_transaction' transaction.id %}" class="btn btn-sm btn-outline-primary" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'delete_transaction' transaction.id %}" class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="4" class="text-center">Транзакций еще нет</td>
+                                <td colspan="5" class="text-center">No transactions yet</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -101,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const categoryData = {{ category_data|safe }};
     
-    // Проверка наличия данных
+    // Check if data exists
     if (categoryData && categoryData.length > 0) {
         const labels = categoryData.map(item => item.name);
         const data = categoryData.map(item => item.amount);
@@ -131,9 +140,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } else {
-        // Если данных нет, показываем сообщение
+        // If no data, show message
         const container = document.getElementById('expenseChart').parentNode;
-        container.innerHTML = '<div class="text-center py-5 text-muted">Нет данных о расходах за текущий месяц. Добавьте расходы, чтобы увидеть график.</div>';
+        container.innerHTML = '<div class="text-center py-5 text-muted">No expense data for the current month. Add expenses to see the chart.</div>';
     }
 });
 </script>

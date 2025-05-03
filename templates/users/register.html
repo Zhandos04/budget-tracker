@@ -6,7 +6,7 @@
     <div class="col-md-8 offset-md-2">
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white">
-                <h4 class="card-title mb-0">Регистрация</h4>
+                <h4 class="card-title mb-0">Register</h4>
             </div>
             <div class="card-body">
                 <form method="POST">
@@ -14,13 +14,13 @@
                     {{ form|crispy }}
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-user-plus me-2"></i>Зарегистрироваться
+                            <i class="fas fa-user-plus me-2"></i>Register
                         </button>
                     </div>
                 </form>
                 <div class="border-top pt-3 mt-3">
                     <small class="text-muted">
-                        Уже есть аккаунт? <a class="ms-2" href="{% url 'login' %}">Войти</a>
+                        Already have an account? <a class="ms-2" href="{% url 'login' %}">Login</a>
                     </small>
                 </div>
             </div>

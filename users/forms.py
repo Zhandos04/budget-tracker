@@ -10,10 +10,10 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         labels = {
-            'username': 'Имя пользователя',
-            'email': 'Электронная почта',
-            'password1': 'Пароль',
-            'password2': 'Подтверждение пароля',
+            'username': 'Username',
+            'email': 'Email',
+            'password1': 'Password',
+            'password2': 'Confirm Password',
         }
 
 class UserUpdateForm(forms.ModelForm):
@@ -23,8 +23,8 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['username', 'email']
         labels = {
-            'username': 'Имя пользователя',
-            'email': 'Электронная почта',
+            'username': 'Username',
+            'email': 'Email',
         }
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -32,5 +32,5 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['currency']
         labels = {
-            'currency': 'Валюта',
+            'currency': 'Currency',
         }
