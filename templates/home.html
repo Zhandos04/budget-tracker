@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron bg-light p-5 rounded">
+    <div class="container">
+        <h1 class="display-4">Ваш личный помощник по финансам</h1>
+        <p class="lead">Отслеживайте свои доходы и расходы, анализируйте траты и планируйте бюджет с помощью нашего удобного приложения.</p>
+        
+        {% if user.is_authenticated %}
+        <div class="mt-4">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-chart-line me-2"></i>Перейти в панель управления
+            </a>
+        </div>
+        {% else %}
+        <div class="mt-4">
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">
+                <i class="fas fa-user-plus me-2"></i>Зарегистрироваться
+            </a>
+            <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-sign-in-alt me-2"></i>Войти
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-chart-pie fa-3x mb-3 text-primary"></i>
+                    <h3>Визуализация данных</h3>
+                    <p>Наглядные графики помогут вам увидеть, на что уходят ваши деньги, и принимать более взвешенные финансовые решения.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-piggy-bank fa-3x mb-3 text-primary"></i>
+                    <h3>Накопления</h3>
+                    <p>Отслеживайте свои сбережения ежемесячно и анализируйте прогресс на пути к вашим финансовым целям.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-mobile-alt fa-3x mb-3 text-primary"></i>
+                    <h3>Доступ откуда угодно</h3>
+                    <p>Полностью адаптивный дизайн позволит вам пользоваться приложением на любом устройстве - от смартфона до компьютера.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
